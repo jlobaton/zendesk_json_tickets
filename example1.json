@@ -1,0 +1,24 @@
+{
+  "tickets": [
+    {
+      "comment": {
+        "body": "estos es un comentario 1"
+      }, 
+      "status": "open", 
+      "tags": "historico", 
+      "external_id": "1", 
+      "prioridad": "low", 
+      "custom_fields": [
+        {
+          "id": "0000001", 
+          "value": "Consumidor"
+        }, 
+        {
+          "id": "0000002", 
+          "value": "Peticion"
+        }
+      ], 
+      "subject": "subject 1"
+    }
+  ]
+}

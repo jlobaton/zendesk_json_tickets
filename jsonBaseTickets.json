@@ -1,0 +1,170 @@
+{
+    "tickets": 
+    [
+        {
+            "subject": "Cinthia Gabriela Alvarado Macias",
+            "comment": {
+                "body": "Servicio - VISITA CLIENTE NUEVO - Futuro cliente solicita visita de pre vendedor para Local. Restaurante Nombre: Cinthia Gabriela Alvarado Macias RUC / RISE /C.I 1311433344001 Dirección: Av. 4 de Noviembre Referencia: Panadería picapiedra // ingresar por la puerta de color beige casa de color crema Correo: Celular: 0984317245 Teléfono: Ciudad: Manta Horario atención: 06:00 - 18:00 Negocio Aperturado: si Volumen de Compra: ( $400 )"
+            },
+            "requester": {
+                "locale_id": 8,
+                "name": "Desconocido",
+                "email": "1311433344001@SINCORREO.COM"
+            },
+            "external_id": 116666,
+            "status": "open",
+            "tags": "historico",
+            "prioridad": "low",
+            "custom_fields": [{
+                    "id": 36000489031,
+                    "value": "Consumidor"
+                },
+                {
+                    "id": 360004890352,
+                    "value": ""
+                },
+                {
+                    "id": 360003715371,
+                    "value": 1311433344001
+                },
+                {
+                    "id": 360003696412,
+                    "value": ""
+                },
+                {
+                    "id": 360003715311,
+                    "value": ""
+                },
+                {
+                    "id": 360004152151,
+                    "value": "Petición"
+                },
+                {
+                    "id": 360004128232,
+                    "value": "Línea 1800-PRONACA"
+                },
+                {
+                    "id": 360004128252,
+                    "value": "Servicio"
+                },
+                {
+                    "id": 360004153971,
+                    "value": "Restaurantes Estandar"
+                },
+                {
+                    "id": 360003861932,
+                    "value": ""
+                },
+                {
+                    "id": 360003909331,
+                    "value": ""
+                },
+                {
+                    "id": 360003892232,
+                    "value": ""
+                },
+                {
+                    "id": 360004891452,
+                    "value": ""
+                },
+                {
+                    "id": 360004891472,
+                    "value": ""
+                },
+                {
+                    "id": 360004893771,
+                    "value": ""
+                },
+                {
+                    "id": 360004893791,
+                    "value": ""
+                },
+                {
+                    "id": 360004893032,
+                    "value": "Negocio Corporativo"
+                },
+                {
+                    "id": 360004939571,
+                    "value": "LINEA OTROS CORPORATIVA"
+                },
+                {
+                    "id": 360004834271,
+                    "value": "VENTAS"
+                },
+                {
+                    "id": 360004308052,
+                    "value": "Peter Stenger"
+                },
+                {
+                    "id": 360004333271,
+                    "value": ""
+                },
+                {
+                    "id": 360004154591,
+                    "value": ""
+                },
+                {
+                    "id": 360004333431,
+                    "value": "pstenger@pronaca.com"
+                },
+                {
+                    "id": 360004833811,
+                    "value": "vcepeda@pronaca.com"
+                },
+                {
+                    "id": 360004716152,
+                    "value": "pronaca2"
+                },
+                {
+                    "id": 360004308272,
+                    "value": "11/04/18 14:56"
+                },
+                {
+                    "id": 360004245971,
+                    "value": "Manta"
+                },
+                {
+                    "id": 360004308292,
+                    "value": ""
+                },
+                {
+                    "id": 360004308312,
+                    "value": ""
+                },
+                {
+                    "id": 360004246031,
+                    "value": ""
+                },
+                {
+                    "id": 360004246211,
+                    "value": ""
+                },
+                {
+                    "id": 360004246391,
+                    "value": ""
+                },
+                {
+                    "id": 360004227412,
+                    "value": ""
+                },
+                {
+                    "id": 360004246551,
+                    "value": "11/04/18 14:52"
+                },
+                {
+                    "id": 360004246571,
+                    "value": "11/04/18 14:55"
+                },
+                {
+                    "id": 360004246591,
+                    "value": "3"
+                },
+                {
+                    "id": 360004246611,
+                    "value": "1"
+                }
+
+            ]
+        }
+    ]
+}
