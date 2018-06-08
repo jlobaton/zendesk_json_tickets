@@ -44,9 +44,51 @@ def verificar_correo(correo):
 
 
 def generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output):
-	cabecera[migrar] = output #row_json
-	arch = cabecera
-	return arch
+
+	if len(custom_fields) > 0:
+		if campo == "custom_field_options":
+			df = []
+			print custom_fields
+			df.append(custom_fields)  
+			row_json[campo] = df
+			cabecera[migrar] = row_json
+			
+			row_json[campo] = custom_fields
+ 
+			output.append(row_json)
+			cabecera[migrar] = output #row_json			
+
+	else:		
+		df = []
+		df.append(row_json)  
+		output.append(row_json)
+		cabecera[migrar] = output #row_json
+	return cabecera
+
+
+def generar_jsonv3(row_json,campo,custom_fields,cabecera,migrar,output):
+
+	if len(custom_fields) > 0:
+		if campo == "custom_field_options":
+			df = []
+			print custom_fields
+			#exit()
+			df.append(custom_fields)  
+			row_json[campo] = df
+			cabecera[migrar] = row_json
+			
+			row_json[campo] = custom_fields
+ 
+			output.append(row_json)
+			cabecera[migrar] = output #row_json			
+
+	else:		
+		df = []
+		df.append(row_json)  
+		output.append(row_json)
+		cabecera[migrar] = output #row_json
+	return cabecera
+
 
 def generar_jsonv_ticket(row_json,campo,custom_fields,cabecera,migrar,output):
   row_json[campo] = custom_fields #Genera 'custom_fields': [{}]
@@ -79,33 +121,59 @@ def procesar(archivo,row,option):
 	mensaje = "Archivo: "
 	migrar = option #'users'
 
-	if migrar == 'users': 
-		filtrar1 = 'custom_fields'  #PARAMETRO PARA FILTRAR EL CAMPO FIELDS
-		campo = 'user_fields'  #CAMPO QUE VA A COLOCAR EN EL JSON
-
-		#filtrar1 = 'custom_fields_options'	
-		#campo2 = 'custom_fields_options'
-	else:  #tickets
+	if migrar == 'tickets':  #tickets
 		filtrar1 = 'custom_fields' 	
 		campo1 = 'custom_fields'
 
 		filtrar2 = 'comment' 	
 		campo2 = 'comment'
 
+	elif migrar == 't-cfo':
+		migrar = 'ticket_field'
+		filtrar1 = 'custom_field_options' 	
+		campo1 = 'custom_field_options'
+
+
 	output = []
 	leer = csv.DictReader(entrada)
 	fieldnames = leer.fieldnames
-	#fieldnames = sorted(fieldnames)
-	#print fieldnames
-	#exit()
-	id_fieldnames = ('','','','0001','0002','0003','0003','0003','0003','0003','0003','0003','0003');
 	j = 0
 	i = 0
 
+	custom_fields3 = {}
+	custom_fields2 = []
+	row_json = {}
+
+	custom = {}
+	i = 0
+	if migrar == 'ticket_field':
+		for valor in leer:			
+			cabecera = {}
+			custom_fields3 = {}
+
+			for field in fieldnames:
+				if i == 0 and field.find(filtrar1) < 0:
+					row_json[field] = valor[field]
+
+				if field.find(filtrar1) >= 0:   #custom_fields
+					custom_fields3[recortar(field,'.')] = valor[field]
+					campo = campo1		
+
+			i=i+1	
+			custom_fields2.append(custom_fields3)
+			row_json[campo1] = custom_fields2
+			cabecera[migrar] = row_json 
+
+		arch = cabecera 
+		file = generar_archivo(arch,archivo,1)
+		return "/// "+mensaje+file
+		#exit('FIN')
+ 
+			
+	custom_fields3 = {}
 	for valor in leer:			
 		cabecera = {}
 		row_json = {}
-		custom_fields = {}
 		custom_fields2 = []
 
 		for field in fieldnames:
@@ -154,7 +222,17 @@ def procesar(archivo,row,option):
 					custom_fields["body"] = valor[field]
 					campo = campo2
 					row_json[campo] = custom_fields
-				
+							
+			elif migrar == 'ticket_field':
+				if field.find(filtrar1) >= 0:   #custom_fields
+					custom_fields3[recortar(field,'.')] = valor[field]
+					campo = campo1		
+					custom_fields = custom_fields3
+					#row_json[campo] = custom_fields
+
+					print custom_fields3
+					#exit()
+
 				else:					
 					row_json[field] = valor[field]
 
@@ -166,18 +244,19 @@ def procesar(archivo,row,option):
 			output = []
 			arch = generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output)
 		else:	
-			print ""
-			output.append(row_json)  #Genera 'custom_fields': [{}]
-			#arch = generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output)
-		
+			#print ""
+			#output.append(row_json)  #Genera 'custom_fields': [{}]
+			#if migrar != 'ticket_field':
+				arch = generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output)
+			#else:
+			#	print ''
+
 		i=i+1
 
 	j = j+1
 	#cabecera[migrar] = output #row_json
 	#arch = cabecera
-	arch = generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output)
-	#print custom_fields2
-	#exit()
+	#arch = generar_jsonv2(row_json,campo,custom_fields,cabecera,migrar,output)
 	file = generar_archivo(arch,archivo,j)
 	return "/// "+mensaje+file
 
@@ -190,11 +269,23 @@ parser.add_argument("-o", "--option", help="Debe especificar si es Users o Ticke
 
 args = parser.parse_args()
 clear()
+
+
+if args.option == 'tickets' :  
+		url = 'tickets.json'
+		method = 'POST' 
+
+elif args.option == 't-cfo':
+		url = 'ticket_fields.json'
+		method = 'POST' 
+
 print "///////////////////////////////////////////////////////"
 print "///"
 print "/// API: https://developer.zendesk.com/requests/new"
-print "/// URL: users/create_many.json"
+print "/// URL: "+url
+print "/// METHOD: "+method
 print procesar(args.file, args.row, args.option)
+print "/// Use Ctrl + V y para pegarlo en la API Console"
 print "///"
 print "//////////////////////////////////////////////////////"
 

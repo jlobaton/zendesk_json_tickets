@@ -1,0 +1,4 @@
+type,title,custom_field_options.name,custom_field_options.value
+tagger,Ciudad,name1,value1
+tagger,Ciudad,name2,value2
+tagger,Ciudad,name3,value3
