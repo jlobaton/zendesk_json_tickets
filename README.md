@@ -1,6 +1,6 @@
 # zendesk_json_tickets
 Bash que permite generar un archivo JSON a partir de un archivo CSV, para poder importarlo a la API Console de Zendesk v2 (Ticket)
-.
+
 ## Dependencias:
 
 * python >=  2.7.12
