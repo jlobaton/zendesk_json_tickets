@@ -278,13 +278,17 @@ if args.option == 'tickets' :
 elif args.option == 't-cfo':
 		url = 'ticket_fields.json'
 		method = 'POST' 
+else:
+		url = ''
+		method = '' 
 
 print "///////////////////////////////////////////////////////"
 print "///"
 print "/// API: https://developer.zendesk.com/requests/new"
 print "/// URL: "+url
 print "/// METHOD: "+method
-print procesar(args.file, args.row, args.option)
+if (args.file):
+	print procesar(args.file, args.row, args.option)
 print "/// Use Ctrl + V y para pegarlo en la API Console"
 print "///"
 print "//////////////////////////////////////////////////////"
